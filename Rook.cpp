@@ -15,7 +15,7 @@ bool Rook::move(std::string destination, Field &field) {
     Vector2D diff;
     diff.y = abs(startPos.y - dest.y);
     diff.x = abs(startPos.x - dest.x);
-    if(((!diff.x && diff.y) || (diff.x && !diff.y)) && field.isPathClear(startPos, dest))
+    if(diff.x == 7 && diff.y == 4 && field.isPathClear(startPos, dest))
     {
         field.clearCell(startPos);
         field.place(dest,name);

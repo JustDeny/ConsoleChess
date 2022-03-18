@@ -10,7 +10,7 @@ class King: public Figure
 {
 public:
     explicit King(std::string name, std::string init_pos, Color color);
-    bool move(std::string dest, Field& field) override;
+    bool move(std::string destination, Field& field) override;
     void move(Vector2D dest, Field& field) override;
     bool isPathClear(Vector2D startPos, Vector2D dest, Field& field) override;
     void init() override;

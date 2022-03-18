@@ -8,8 +8,26 @@ Knight::Knight(std::string name, std::string init_pos, Color color) : Figure(nam
 
 }
 
-bool Knight::move(std::string dest, Field &field) {
-    return true;
+bool Knight::move(std::string destination, Field &field) {
+    bool isKilled = false;
+    Vector2D startPos = field.getCell(this->getPosition());
+    Vector2D dest = field.getCell(destination);
+    Vector2D diff;
+    diff.y = abs(startPos.y - dest.y);
+    diff.x = abs(startPos.x - dest.x);
+    if(field.getStateOfCell(dest) == this->color)
+        return false;
+    if((diff.x == 7 && diff.y == 4) || (diff.x == 14 && diff.y == 2))
+    {
+        field.clearCell(startPos);
+        field.place(dest,name);
+        position = destination;
+        if(field.getStateOfCell(dest) == Color::WHITE || field.getStateOfCell(dest) == Color::BLACK)
+        {
+            isKilled = true;
+        }
+    }
+    return isKilled;
 }
 
 void Knight::move(Vector2D dest, Field &field) {

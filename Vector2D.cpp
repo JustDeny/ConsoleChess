@@ -18,3 +18,9 @@ Vector2D& Vector2D::operator+=(const Vector2D& rhs) {
     y += rhs.y;
     return *this;
 }
+
+bool Vector2D::operator==(const Vector2D &rhs) const {
+    if(x == rhs.x && y == rhs.y)
+        return true;
+    return false;
+}

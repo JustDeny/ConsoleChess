@@ -13,6 +13,7 @@ public:
     int x, y;
     bool operator!=(const Vector2D& rhs)const;
     Vector2D& operator+=(const Vector2D& rhs);
+    bool operator==(const Vector2D& rhs)const;
 };
 
 

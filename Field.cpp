@@ -97,16 +97,16 @@ bool Field::isPathClear(Vector2D startPos, Vector2D dest) {
 
     if(dist.y > 0)  step.y = 2;
     else if(dist.y < 0) step.y = -2;
-    else    step.y = 0;\
-
-    counter+=step;
-    while(counter != dest)
-    {
-        if(getStateOfCell(counter) != Color::UNKNOWN)
-        {
+    else    step.y = 0;
+    counter+= step;
+    if (getStateOfCell(counter) != Color::UNKNOWN && counter != dest) {
+        return false;
+    }
+    while(counter != dest) {
+        if (getStateOfCell(counter) != Color::UNKNOWN) {
             return false;
         }
-        counter+= step;
+        counter += step;
     }
     return true;
 }

@@ -13,6 +13,10 @@ bool Pawn::move(std::string destination, Field &field) {
     bool isKilled = false;
     Vector2D startPos = field.getCell(this->getPosition());
     Vector2D dest = field.getCell(destination);
+    if(startPos == Vector2D{25,9} && dest == Vector2D{32, 7})
+    {
+        bool stop;
+    }
     int direction;
     if(isWhite())
     {
@@ -32,17 +36,6 @@ bool Pawn::move(std::string destination, Field &field) {
     diff.x = abs(startPos.x - dest.x);
     int limit = diff.y+diff.x;
 
-     /*
-    else if(isWhite() && diff.y == 2 && !diff.x
-            && (field.getStateOfCell(dest) == Color::WHITE||field.getStateOfCell(dest) == Color::BLACK))
-    {
-        return false;
-    }
-    else if(isBlack() && diff.y == 2 && !diff.x
-            && (field.getStateOfCell(dest) == Color::WHITE || field.getStateOfCell(dest) == Color::BLACK))
-    {
-        return false;
-    }*/
     if(diff.x == 0 && field.getStateOfCell(dest) != Color::UNKNOWN)
     {
         return false;
