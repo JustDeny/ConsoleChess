@@ -21,6 +21,7 @@ private:
     int capturedBlack;
     std::vector<std::unique_ptr<Figure>> figures;
     bool currentMove;
+    bool play;
 public:
     void Init();
     void Run();

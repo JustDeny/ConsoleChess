@@ -43,9 +43,11 @@ bool Pawn::move(std::string destination, Field &field) {
     if(diff.y <= 4 && diff.x >= 0 && limit<11 && field.isPathClear(startPos, dest)
         && direction > 0)
     {
-        field.clearCell(startPos);
-        if(field.getStateOfCell(dest) == Color::WHITE || field.getStateOfCell(dest) == Color::BLACK)
+        if(field.getStateOfCell(dest) != Color::UNKNOWN && field.getStateOfCell(dest) != this->color)
+        {
             isKilled = true;
+        }
+        field.clearCell(startPos);
         field.place(dest, name);
         position = destination;
     }
@@ -70,29 +72,10 @@ void Pawn::init() {
 
 }
 
-bool Pawn::isPathClear(Vector2D startPos, Vector2D dest, Field& field) {
-    if(abs(dest.y - startPos.y) && !abs(dest.x - startPos.x) && field.getStateOfCell(dest) != Color::UNKNOWN)
-    {
-        return false;
-    }
-    else if(abs(dest.x - startPos.x) != 0 && (field.getStateOfCell(dest) == Color::UNKNOWN ||
-        field.getStateOfCell(dest) == color))
-    {
-        return false;
-    }
-    else if(isWhite() && abs(dest.y - startPos.y) == 2 && abs(dest.x - startPos.x) == 0
-        && (field.getStateOfCell(dest) == Color::WHITE||field.getStateOfCell(dest) == Color::BLACK))
-    {
-        return false;
-    }
-    else if(isBlack() && abs(dest.y - startPos.y) == 2 && abs(dest.x - startPos.x) == 0
-        && (field.getStateOfCell(dest) == Color::WHITE || field.getStateOfCell(dest) == Color::BLACK))
-    {
-        return false;
-    }
-    return true;
-}
-
 bool Pawn::isFirstMove() const {
     return firstMove;
+}
+
+bool Pawn::isPathClear(Vector2D startPos, Vector2D dest, Field &field) {
+    return false;
 }

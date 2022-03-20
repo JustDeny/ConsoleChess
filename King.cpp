@@ -17,13 +17,13 @@ bool King::move(std::string destination, Field& field) {
         return false;
     if((diff.x <= 7 && diff.y <= 2) && field.isPathClear(startPos, dest))
     {
-        field.clearCell(startPos);
-        field.place(dest, name);
-        position = destination;
-        if(field.getStateOfCell(dest) == Color::WHITE || field.getStateOfCell(dest) == Color::BLACK)
+        if(field.getStateOfCell(dest) != Color::UNKNOWN && field.getStateOfCell(dest) != this->color)
         {
             isKilled = true;
         }
+        field.clearCell(startPos);
+        field.place(dest, name);
+        position = destination;
     }
     return isKilled;
 }

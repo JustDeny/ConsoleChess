@@ -15,15 +15,15 @@ bool Rook::move(std::string destination, Field &field) {
     Vector2D diff;
     diff.y = abs(startPos.y - dest.y);
     diff.x = abs(startPos.x - dest.x);
-    if(diff.x == 7 && diff.y == 4 && field.isPathClear(startPos, dest))
+    if((diff.x && !diff.y || !diff.x && diff.y) && field.isPathClear(startPos, dest))
     {
-        field.clearCell(startPos);
-        field.place(dest,name);
-        position = destination;
-        if(field.getStateOfCell(dest) == Color::WHITE || field.getStateOfCell(dest) == Color::BLACK)
+        if(field.getStateOfCell(dest) != Color::UNKNOWN && field.getStateOfCell(dest) != this->color)
         {
             isKilled = true;
         }
+        field.clearCell(startPos);
+        field.place(dest,name);
+        position = destination;
     }
     return isKilled;
 }

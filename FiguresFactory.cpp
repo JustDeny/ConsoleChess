@@ -18,12 +18,12 @@ std::unique_ptr<Figure> createFigure(std::string name, std::string pos)
 
     switch(std::toupper(name[1]))
     {
-        case 'P': return std::make_unique<Pawn>(Pawn{name, pos, color});
-        case 'R': return std::make_unique<Rook>(Rook{name, pos, color});
-        case 'N': return std::make_unique<Knight>(Knight{name, pos, color});
-        case 'B': return std::make_unique<Bishop>(Bishop{name, pos, color});
-        case 'Q': return std::make_unique<Queen>(Queen{name, pos, color});
-        case 'K': return std::make_unique<King>(King{name, pos, color});
+        case 'P': return std::make_unique<Pawn>(name, pos, color);
+        case 'R': return std::make_unique<Rook>(name, pos, color);
+        case 'N': return std::make_unique<Knight>(name, pos, color);
+        case 'B': return std::make_unique<Bishop>(name, pos, color);
+        case 'Q': return std::make_unique<Queen>(name, pos, color);
+        case 'K': return std::make_unique<King>(name, pos, color);
     }
     return nullptr;
 }
