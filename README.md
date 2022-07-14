@@ -1,2 +1,1 @@
-description
-...
+It's a pretty simple game that has no graphic, so that it runs in console. Also the rules was simplified in order not to dive into the subject area andjust to attempt to implement the most part of my knowledge.
